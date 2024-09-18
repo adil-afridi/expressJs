@@ -1,7 +1,7 @@
 import express from "express";
 
 const app = express();
-const Port = 3000;
+const PORT = 3000;
 
 app.use(epxress.json());
 
@@ -105,16 +105,34 @@ app.post("/items", (req, res) => {
 });
 
 /// put update the existing items
-app.put('/items/:id',(req,res)=>{
-    const id = parseInt(req.params.id);
-    const itemIndex = items.findIndex(item => item.id === id)
+app.put("/items/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const itemIndex = items.findIndex((item) => item.id === id);
 
-    if(itemIndex !== -1){
-        items[itemIndex].name = req.body.name;
-        items[itemIndex].age = req.body.age;
-        items[itemIndex].city = req.body.city;
-        res.status(200).json(items[itemIndex])
-    }else{
-        res.status(401).json({message: 'item is not found..'})
-    }
+  if (itemIndex !== -1) {
+    items[itemIndex].name = req.body.name;
+    items[itemIndex].age = req.body.age;
+    items[itemIndex].city = req.body.city;
+    res.status(200).json(items[itemIndex]);
+  } else {
+    res.status(401).json({ message: "item is not found.." });
+  }
+});
+
+/// delete  item by id
+app.delete("/items/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const itemIndex = items.findIndex((item) => item.id === id);
+
+  if (itemIndex !== -1) {
+    items.splice(itemIndex, 1);
+    res.status(200).json({ message: "item Deleted Successfully" });
+  } else {
+    res.status(404).json({ message: "item is not found.." });
+  }
+});
+
+
+app.listen(PORT, () => {
+    console.log(`Server is listening now on http://localhost:${PORT}`)
 })
