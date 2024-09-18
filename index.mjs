@@ -38,3 +38,10 @@ const items = [
         city: 'Peshawar'
     }
 ]
+
+
+//Root of Home Page
+
+app.get('/',(req , res)=>{
+    res.send('Wellcome to Home Page')
+})
