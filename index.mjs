@@ -52,10 +52,15 @@ app.get('/about', (req , res)=>{
 })
 
 
-//Post request to about page
+//Post request to about 
 app.post('/about',(req,res)=>{
     const data = req.body;
     res.send(`Data Recived on About Page ${JSON.stringify(data)}`)
 })
 
 
+//PUT request to about 
+app.put('/about',(req,res)=>{
+    const updateDate = req.body;
+    res.send(`Data is updated on About Page ${JSON.stringify(updateDate)}`)
+})
