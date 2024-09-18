@@ -45,3 +45,9 @@ const items = [
 app.get('/',(req , res)=>{
     res.send('Wellcome to Home Page')
 })
+
+// Root of About Page
+
+app.get('/about', (req , res)=>{
+    res.send('Wellcome to About Page')
+})
