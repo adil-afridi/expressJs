@@ -41,13 +41,21 @@ const items = [
 
 
 //Root of Home Page
-
 app.get('/',(req , res)=>{
     res.send('Wellcome to Home Page')
 })
 
-// Root of About Page
 
+// Root of About Page
 app.get('/about', (req , res)=>{
     res.send('Wellcome to About Page')
 })
+
+
+//Post request to about page
+app.post('/about',(req,res)=>{
+    const data = req.body;
+    res.send(`Data Recived on About Page ${JSON.stringify(data)}`)
+})
+
+
