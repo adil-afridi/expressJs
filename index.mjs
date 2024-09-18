@@ -70,3 +70,10 @@ app.put('/about',(req,res)=>{
 app.delete('/about',(req,res)=>{
     res.send('Succesfully Deleted data..')
 })
+
+
+// Contact Page
+
+app.get('/contact',(req,res)=>{
+    res.send('Wellcome to Contact Page')
+})
