@@ -64,3 +64,9 @@ app.put('/about',(req,res)=>{
     const updateDate = req.body;
     res.send(`Data is updated on About Page ${JSON.stringify(updateDate)}`)
 })
+
+// DELETE request to about
+
+app.delete('/about',(req,res)=>{
+    res.send('Succesfully Deleted data..')
+})
