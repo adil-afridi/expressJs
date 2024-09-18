@@ -68,7 +68,7 @@ app.put('/about',(req,res)=>{
 // DELETE request to about
 
 app.delete('/about',(req,res)=>{
-    res.send('Succesfully Deleted data..')
+    res.send('Succesfully Deleted data About Page..')
 })
 
 
@@ -76,4 +76,24 @@ app.delete('/about',(req,res)=>{
 
 app.get('/contact',(req,res)=>{
     res.send('Wellcome to Contact Page')
+})
+
+
+//Post request to contact 
+app.post('/contact',(req,res)=>{
+    const data = req.body;
+    res.send(`Data Recived on Contact Page ${JSON.stringify(data)}`)
+})
+
+
+//PUT request to Contact 
+app.put('/about',(req,res)=>{
+    const updateDate = req.body;
+    res.send(`Data is updated on Contact Page ${JSON.stringify(updateDate)}`)
+})
+
+// DELETE request to Contact
+
+app.delete('/about',(req,res)=>{
+    res.send('Succesfully Deleted data from Contact Page..')
 })
