@@ -87,7 +87,7 @@ app.delete("/about", (req, res) => {
   res.send("Succesfully Deleted data from Contact Page..");
 });
 
-// get Retrive all items now
+/// get Retrive all items now
 app.get("/items", (req, res) => {
   res.status(200).json(items);
 });
@@ -103,3 +103,18 @@ app.post("/items", (req, res) => {
   items.push(newItem);
   res.status(201).json(newItem);
 });
+
+/// put update the existing items
+app.put('/items/:id',(req,res)=>{
+    const id = parseInt(req.params.id);
+    const itemIndex = items.findIndex(item => item.id === id)
+
+    if(itemIndex !== -1){
+        items[itemIndex].name = req.body.name;
+        items[itemIndex].age = req.body.age;
+        items[itemIndex].city = req.body.city;
+        res.status(200).json(items[itemIndex])
+    }else{
+        res.status(401).json({message: 'item is not found..'})
+    }
+})
