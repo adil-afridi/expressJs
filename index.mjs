@@ -3,7 +3,7 @@ import express from "express";
 const app = express();
 const PORT = 3000;
 
-app.use(epxress.json());
+app.use(express.json()); // Fixed typo here
 
 const items = [
   {
@@ -21,7 +21,7 @@ const items = [
   {
     id: 3,
     name: "Amir Khan",
-    age: 227,
+    age: 27,
     city: "Karachi",
   },
   {
@@ -38,61 +38,61 @@ const items = [
   },
 ];
 
-///Root of Home Page
+/// Root of Home Page
 app.get("/", (req, res) => {
-  res.send("Wellcome to Home Page");
+  res.send("Welcome to Home Page");
 });
 
 /// Root of About Page
 app.get("/about", (req, res) => {
-  res.send("Wellcome to About Page");
+  res.send("Welcome to About Page");
 });
 
-///Post request to about
+/// Post request to About
 app.post("/about", (req, res) => {
   const data = req.body;
-  res.send(`Data Recived on About Page ${JSON.stringify(data)}`);
+  res.send(`Data Received on About Page: ${JSON.stringify(data)}`);
 });
 
-///PUT request to about
+/// PUT request to About
 app.put("/about", (req, res) => {
-  const updateDate = req.body;
-  res.send(`Data is updated on About Page ${JSON.stringify(updateDate)}`);
+  const updateData = req.body;
+  res.send(`Data is updated on About Page: ${JSON.stringify(updateData)}`);
 });
 
-/// DELETE request to about
+/// DELETE request to About
 app.delete("/about", (req, res) => {
-  res.send("Succesfully Deleted data About Page..");
+  res.send("Successfully deleted data from About Page.");
 });
 
 /// Contact Page
 app.get("/contact", (req, res) => {
-  res.send("Wellcome to Contact Page");
+  res.send("Welcome to Contact Page");
 });
 
-///Post request to contact
+/// Post request to Contact
 app.post("/contact", (req, res) => {
   const data = req.body;
-  res.send(`Data Recived on Contact Page ${JSON.stringify(data)}`);
+  res.send(`Data Received on Contact Page: ${JSON.stringify(data)}`);
 });
 
-///PUT request to Contact
-app.put("/about", (req, res) => {
-  const updateDate = req.body;
-  res.send(`Data is updated on Contact Page ${JSON.stringify(updateDate)}`);
+/// PUT request to Contact
+app.put("/contact", (req, res) => {
+  const updateData = req.body;
+  res.send(`Data is updated on Contact Page: ${JSON.stringify(updateData)}`);
 });
 
 /// DELETE request to Contact
-app.delete("/about", (req, res) => {
-  res.send("Succesfully Deleted data from Contact Page..");
+app.delete("/contact", (req, res) => {
+  res.send("Successfully deleted data from Contact Page.");
 });
 
-/// get Retrive all items now
+/// Get retrieve all items now
 app.get("/items", (req, res) => {
   res.status(200).json(items);
 });
 
-/// post add a new items
+/// Post add a new item
 app.post("/items", (req, res) => {
   const newItem = {
     id: items.length + 1,
@@ -104,7 +104,7 @@ app.post("/items", (req, res) => {
   res.status(201).json(newItem);
 });
 
-/// put update the existing items
+/// PUT update the existing item
 app.put("/items/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const itemIndex = items.findIndex((item) => item.id === id);
@@ -115,24 +115,23 @@ app.put("/items/:id", (req, res) => {
     items[itemIndex].city = req.body.city;
     res.status(200).json(items[itemIndex]);
   } else {
-    res.status(401).json({ message: "item is not found.." });
+    res.status(404).json({ message: "Item not found." });
   }
 });
 
-/// delete  item by id
+/// DELETE item by id
 app.delete("/items/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const itemIndex = items.findIndex((item) => item.id === id);
 
   if (itemIndex !== -1) {
     items.splice(itemIndex, 1);
-    res.status(200).json({ message: "item Deleted Successfully" });
+    res.status(200).json({ message: "Item deleted successfully." });
   } else {
-    res.status(404).json({ message: "item is not found.." });
+    res.status(404).json({ message: "Item not found." });
   }
 });
 
-
 app.listen(PORT, () => {
-    console.log(`Server is listening now on http://localhost:${PORT}`)
-})
+  console.log(`Server is listening now on http://localhost:${PORT}`);
+});
